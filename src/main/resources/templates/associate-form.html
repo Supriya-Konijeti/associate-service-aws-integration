@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Save Associate</title>
+</head>
+
+<body style="background-color: antiquewhite;">
+
+<div class="container">
+
+    <h3> Associate-Skill Tracker</h3>
+    <hr>
+
+    <p class="h4 mb-4">Save Associate</p>
+
+    <form action="#" th:action="@{/associates/save}"
+          th:object="${associates}" method="POST">
+
+        <!-- Add hidden form field to handle update -->
+        <label>Associate Id : </label>
+        <input required type="text" th:field="*{associateId}"
+               class="form-control mb-4 col-4" placeholder="Associate ID"/>
+        <label>Associate Name : </label>
+        <input required type="text" th:field="*{name}"
+               class="form-control mb-4 col-4" placeholder="Associate Name">
+        <label>Associate Email : </label>
+        <input required type="text" th:field="*{email}"
+               class="form-control mb-4 col-4" placeholder="Associate Email">
+        <label>Associate Mobile Numbr : </label>
+        <input required type="text" th:field="*{mobileNumber}"
+               class="form-control mb-4 col-4" placeholder="Mobile Number">
+        <label>Skills(Can be give as 1,2..) :</label><br>
+        <label>1.JavaScript<br>2.java<br>3.Cpp<br>4.Python<br>5.AWS<br></label>
+        <input type="text" th:field="*{skills}"
+               class="form-control mb-4 col-4" placeholder="Associates Skill">
+        <label>Selected skills are: </label>
+        <span th:each="skill : ${associates.skills}">
+			<br/>&nbsp;&nbsp;<span th:text="${skill.skill_title}"></span>
+		</span><br>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+
+    </form>
+
+    <hr>
+    <a th:href="@{/associates/list}">Back to Associates List</a>
+
+</div>
+</body>
+
+</html>

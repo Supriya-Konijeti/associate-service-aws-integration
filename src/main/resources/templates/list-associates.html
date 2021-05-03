@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html"; charset="utf-8"/>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Associate-Skill Tracker</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h3 align="center">Skill Tracker</h3>
+    <hr>
+
+    <!-- Add a button -->
+    <a th:href="@{/associates/showFormForAdd}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Associate
+    </a>
+    <form th:action ="@{/associates/list}" method="get">
+        <input  id="txtSearch" type="text" name="keyword">
+        <button type ="submit">Search</button>
+        <button type="reset">Clear</button>
+    </form>
+
+    <hr>
+    <table class="table table-bordered table-striped ">
+        <thead class="thead-dark">
+        <tr>
+            <th>Associate ID</th>
+            <th>Associate Name</th>
+            <th>Associate Email</th>
+            <th>Mobile Number</th>
+            <th>Skills</th>
+            <th>Actions</th>
+            <th>Action</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="tempAssociate : ${associates}">
+
+            <td th:text="${tempAssociate.associateId}"></td>
+            <td th:text="${tempAssociate.name}"></td>
+            <td th:text="${tempAssociate.email}"></td>
+            <td th:text="${tempAssociate.mobileNumber}"></td>
+            <td th:text="${tempAssociate.skills}"></td>
+
+            <!-- Add update button/link -->
+            <td>
+                <a th:href="@{/associates/view(associateId=${tempAssociate.associateId})}"
+                   class="btn btn-primary btn-sm">View</a>
+            </td>
+            <td>  <a th:href="@{/associates/showFormForUpdate(associateId=${tempAssociate.associateId})}"
+                   class="btn btn-info btn-sm">
+                    Update
+                </a></td>
+            <td>
+                <a th:href="@{/associates/delete(associateId=${tempAssociate.associateId})}"
+                   class="btn btn-danger btn-sm">
+                    Delete
+                </a>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+    <table width="100%" height="30" border="0" cellspacing="5" cellpadding="5" bgcolor="#000000">
+        <tr>
+            <td align="center">
+
+                <font face="verdana, Geneva, sans-serif" color="white">Associate Details<br />
+                    John Dempsey-HR Academic Manager</font>
+
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
